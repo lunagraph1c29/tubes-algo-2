@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesanan Berhasil</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Pesanan Berhasil!</h1>
+
+<div class="menu-card" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+    <p><strong>No. Pesanan:</strong> <span th:text="${pesanan.idPesanan}"></span></p>
+    <p><strong>Nama:</strong> <span th:text="${pesanan.namaPembeli}"></span></p>
+    <p><strong>Kue:</strong> <span th:text="${pesanan.kue.namaKue}"></span></p>
+    <p><strong>Jumlah:</strong> <span th:text="${pesanan.jumlahBoks}"></span> boks</p>
+    <p><strong>Tanggal Pengiriman:</strong> <span th:text="${pesanan.tanggalPengiriman}"></span></p>
+    <p><strong>Total Harga:</strong> Rp<span th:text="${pesanan.kue.harga * pesanan.jumlahBoks}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${pesanan.status}"></span></p>
+</div>
+
+<div class="qris-box" th:if="${pesanan.status == 'Menunggu'}">
+    <p style="font-weight: bold; margin-bottom: 8px;">Silakan lakukan pembayaran. Jangan lupa di catatan tambahkan (Nama, jenis kue, total boks).:</p>
+    <img th:src="@{/img/qris-placeholder.png}" alt="QRIS Pembayaran" style="width: 100%; max-width: 280px; border-radius: 8px;">
+    <p style="color: #666; font-size: 13px; margin-top: 8px;">
+        Status akan berubah setelah penjual konfirmasi pembayaran Anda.
+    </p>
+</div>
+
+<p style="margin-top: 16px; color: #666;">
+    Simpan No. HP Anda untuk mengecek status pesanan ini nanti.
+</p>
+
+<div class="tombol-aksi">
+    <a th:href="@{/}" class="btn btn-pesan">Kembali ke Home</a>
+</div>
+
+</body>
+</html>

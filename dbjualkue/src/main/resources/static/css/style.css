@@ -1,0 +1,186 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 16px;
+    background: #fffaf3;
+}
+
+h1 {
+    font-size: 24px;
+    color: #d35400;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 24px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-nama {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.menu-harga {
+    color: #d35400;
+    font-weight: bold;
+}
+
+.tombol-aksi {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.btn {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.btn-pesan {
+    background: #d35400;
+    color: white;
+}
+
+.btn-cek {
+    background: white;
+    color: #d35400;
+    border: 2px solid #d35400;
+}
+
+/* Untuk halaman form */
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #d35400;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.error {
+    background: #fdecea;
+    color: #b71c1c;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 12px;
+}
+
+.tabel-data {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-top: 10px;
+}
+
+.tabel-data th, .tabel-data td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.tabel-data th {
+    background: #fdf0e3;
+    color: #d35400;
+}
+
+.aksi-tabel {
+    display: flex;
+    gap: 6px;
+}
+
+.aksi-tabel form {
+    margin: 0;
+}
+
+.btn-kecil {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit {
+    background: white;
+    color: #d35400;
+    border: 1px solid #d35400;
+}
+
+.btn-hapus {
+    background: #b71c1c;
+    color: white;
+}
+
+.form-status {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.form-status select {
+    width: auto;
+    margin-top: 0;
+    padding: 4px 6px;
+    font-size: 13px;
+}
+
+.qris-box {
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 16px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.kontak-box {
+    text-align: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+    color: #666;
+    font-size: 14px;
+}

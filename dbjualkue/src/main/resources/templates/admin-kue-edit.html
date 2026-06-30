@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Kue</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Edit Kue</h1>
+
+<form th:action="@{/admin/kue/edit/{id}(id=${kue.idKue})}" method="post">
+    <label>ID Kue</label>
+    <input type="text" th:value="${kue.idKue}" disabled>
+
+    <label>Nama Kue</label>
+    <input type="text" name="namaKue" th:value="${kue.namaKue}" required>
+
+    <label>Harga</label>
+    <input type="number" name="harga" th:value="${kue.harga}" step="0.01" required>
+
+    <button type="submit">Update</button>
+</form>
+
+</body>
+</html>

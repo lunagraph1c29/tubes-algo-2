@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Kue</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Tambah Kue Baru</h1>
+
+<form th:action="@{/admin/kue/tambah}" method="post">
+    <label>Nama Kue</label>
+    <input type="text" name="namaKue" required>
+
+    <label>Harga</label>
+    <input type="number" name="harga" step="0.01" required>
+
+    <button type="submit">Simpan</button>
+</form>
+
+</body>
+</html>

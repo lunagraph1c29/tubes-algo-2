@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cek Status Pesanan</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Cek Status Pesanan</h1>
+
+<form th:action="@{/cek-status/hasil}" method="get">
+    <label>Masukkan No. HP Anda</label>
+    <input type="text" name="noHp" required>
+
+    <button type="submit">Cek Status</button>
+</form>
+
+</body>
+</html>

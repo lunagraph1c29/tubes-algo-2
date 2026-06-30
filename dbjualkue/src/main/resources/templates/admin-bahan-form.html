@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Bahan Baku</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Tambah Bahan Baku</h1>
+
+<form th:action="@{/admin/bahan/tambah}" method="post">
+    <label>Nama Bahan</label>
+    <input type="text" name="namaBahan" required>
+
+    <label>Stok Awal</label>
+    <input type="number" name="stok" step="0.01" required>
+
+    <label>Satuan (misal: gram, butir, ml)</label>
+    <input type="text" name="satuan" required>
+
+    <button type="submit">Simpan</button>
+</form>
+
+</body>
+</html>

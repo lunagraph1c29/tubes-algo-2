@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hasil Status Pesanan - Bibi</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Status Pesanan</h1>
+<p class="subtitle">No. HP: <span th:text="${noHp}"></span></p>
+
+<!-- Tampilkan kalau TIDAK ADA pesanan ditemukan -->
+<div class="error" th:if="${daftarPesanan.isEmpty()}">
+    Tidak ada pesanan ditemukan untuk No. HP ini.
+</div>
+
+<!-- Loop tiap pesanan yang ditemukan -->
+<div th:each="p : ${daftarPesanan}" class="menu-card" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+    <p><strong>No. Pesanan:</strong> <span th:text="${p.idPesanan}"></span></p>
+    <p><strong>Kue:</strong> <span th:text="${p.kue.namaKue}"></span></p>
+    <p><strong>Jumlah:</strong> <span th:text="${p.jumlahBoks}"></span> boks</p>
+    <p><strong>Tanggal Pengiriman:</strong> <span th:text="${p.tanggalPengiriman}"></span></p>
+    <p><strong>Total Harga:</strong> Rp<span th:text="${p.kue.harga * p.jumlahBoks}"></span></p>
+    <p><strong>Status:</strong> <span th:text="${p.status}"></span></p>
+
+    <div class="qris-box" th:if="${p.status == 'Menunggu'}" style="width: 100%;">
+        <p style="font-weight: bold; margin-bottom: 8px;">Silakan lakukan pembayaran:</p>
+        <img th:src="@{/img/qris-placeholder.png}" alt="QRIS Pembayaran" style="width: 100%; max-width: 280px; border-radius: 8px;">
+        <p style="color: #666; font-size: 13px; margin-top: 8px; text-align: left;">
+            Jangan lupa di catatan tambahkan (Nama, jenis kue, total boks).
+            Tapi apabila sudah membayar dan status masih menunggu, silakan chat kontak ini
+            <strong>08XXXXXXXX</strong> kirim pesan seperti ini misalnya:
+            <em>"Saya ingin konfirmasi untuk pesanan (<span th:text="${p.namaPembeli}"></span>, <span th:text="${p.kue.namaKue}"></span>, <span th:text="${p.jumlahBoks}"></span> boks) saya sudah bayar tapi statusnya masih menunggu."</em>
+        </p>
+    </div>
+</div>
+
+<div class="tombol-aksi">
+    <a th:href="@{/}" class="btn btn-pesan">Kembali ke Home</a>
+</div>
+
+</body>
+</html>

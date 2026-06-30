@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Resep</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Kelola Resep</h1>
+
+<div class="tombol-aksi" style="margin-bottom: 20px;">
+    <a th:href="@{/admin/resep/tambah}" class="btn btn-pesan">+ Tambah Resep</a>
+    <a th:href="@{/admin/dashboard}" class="btn btn-cek">Kembali ke Dashboard</a>
+</div>
+
+<table class="tabel-data">
+    <thead>
+        <tr>
+            <th>Kue</th>
+            <th>Bahan Baku</th>
+            <th>Jumlah Dibutuhkan</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="r : ${daftarResep}">
+            <td th:text="${r.kue.namaKue}"></td>
+            <td th:text="${r.bahanBaku.namaBahan}"></td>
+            <td th:text="${r.jumlahDibutuhkan} + ' ' + ${r.bahanBaku.satuan}"></td>
+            <td>
+                <form th:action="@{/admin/resep/hapus/{id}(id=${r.idResep})}" method="post">
+                    <button type="submit" class="btn-kecil btn-hapus">Hapus</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

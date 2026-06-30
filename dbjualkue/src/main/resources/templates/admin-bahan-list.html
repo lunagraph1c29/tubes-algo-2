@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Bahan Baku</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Kelola Bahan Baku</h1>
+
+<div class="tombol-aksi" style="margin-bottom: 20px;">
+    <a th:href="@{/admin/bahan/tambah}" class="btn btn-pesan">+ Tambah Bahan Baru</a>
+    <a th:href="@{/admin/dashboard}" class="btn btn-cek">Kembali ke Dashboard</a>
+</div>
+
+<table class="tabel-data">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Bahan</th>
+            <th>Stok</th>
+            <th>Satuan</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="b : ${daftarBahan}">
+            <td th:text="${b.idBahan}"></td>
+            <td th:text="${b.namaBahan}"></td>
+            <td th:text="${b.stok}"></td>
+            <td th:text="${b.satuan}"></td>
+            <td>
+                <div class="aksi-tabel">
+                    <a th:href="@{/admin/bahan/edit/{id}(id=${b.idBahan})}" class="btn-kecil btn-edit">Edit</a>
+                    <form th:action="@{/admin/bahan/hapus/{id}(id=${b.idBahan})}" method="post">
+                        <button type="submit" class="btn-kecil btn-hapus">Hapus</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

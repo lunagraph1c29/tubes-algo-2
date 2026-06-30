@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesan Kue Online</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    
+    <h1>Bakkery ala ala</h1>
+    <p class="subtitle">Pesan kue favoritmu, langsung dari dapur bibi</p>
+
+    <div th:each="k : ${daftarKue}" class = "menu-card">
+        <span class="menu-nama" th:text="${k.namaKue}"></span>
+        <span class="menu-harga" th:text="${k.harga}"></span>
+    </div>
+
+    <div class="tombol-aksi">
+        <a th:href="@{/pesan}" class="btn btn-pesan">Pesan kue</a>
+        <a th:href="@{/cek-status}" class="btn btn-cek">Cek status pesanan</a>
+    </div>
+
+    <div class="kontak-box">
+    <p>Ada pertanyaan? Hubungi kami:</p>
+    <p><strong> 08XXXXXXXX</strong></p>
+</div>
+
+</body>
+</html>

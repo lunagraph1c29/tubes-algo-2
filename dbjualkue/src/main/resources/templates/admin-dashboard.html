@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Dashboard</h1>
+<p class="subtitle">Halo, <span th:text="${namaAdmin}"></span></p>
+
+<div class="tombol-aksi" style="margin-bottom: 24px;">
+    <a th:href="@{/admin/kue}" class="btn btn-cek">Kelola Menu Kue</a>
+    <a th:href="@{/admin/resep}" class="btn btn-cek">Kelola Resep Kue</a>
+    <a th:href="@{/admin/bahan}" class="btn btn-cek">Kelola Bahan Baku</a>
+    <a th:href="@{/admin/logout}" class="btn btn-cek">Logout</a>
+</div>
+
+<h2 style="font-size: 18px;">Antrean Pesanan</h2>
+
+<div th:if="${daftarAntrean.isEmpty()}" class="error">
+    Belum ada pesanan masuk.
+</div>
+
+<table class="tabel-data" th:if="${!daftarAntrean.isEmpty()}">
+    <thead>
+        <tr>
+            <th>No. Pesanan</th>
+            <th>Pembeli</th>
+            <th>Kue</th>
+            <th>Jumlah</th>
+            <th>Tgl Kirim</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="p : ${daftarAntrean}">
+            <td th:text="${p.idPesanan}"></td>
+            <td th:text="${p.namaPembeli}"></td>
+            <td th:text="${p.kue.namaKue}"></td>
+            <td th:text="${p.jumlahBoks}"></td>
+            <td th:text="${p.tanggalPengiriman}"></td>
+            <td th:text="${p.status}"></td>
+            <td>
+                <form th:action="@{/admin/update-status}" method="post" class="form-status">
+                    <input type="hidden" name="idPesanan" th:value="${p.idPesanan}">
+                    <select name="statusBaru">
+                        <option value="Menunggu" th:selected="${p.status == 'Menunggu'}">Menunggu</option>
+                        <option value="Sedang Dibuat" th:selected="${p.status == 'Sedang Dibuat'}">Sedang Dibuat</option>
+                        <option value="Siap Diambil" th:selected="${p.status == 'Siap Diambil'}">Siap Diambil</option>
+                    </select>
+                    <button type="submit" class="btn-kecil btn-edit">Update</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Kelola Menu Kue</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Kelola Menu Kue</h1>
+
+<div class="error" th:if="${errorMessage}">
+    <span th:text="${errorMessage}"></span>
+</div>
+
+<div class="tombol-aksi" style="margin-bottom: 20px;">
+    <a th:href="@{/admin/kue/tambah}" class="btn btn-pesan">+ Tambah Kue Baru</a>
+    <a th:href="@{/admin/dashboard}" class="btn btn-cek">Kembali ke Dashboard</a>
+</div>
+
+<table class="tabel-data">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nama Kue</th>
+            <th>Harga</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="k : ${daftarKue}">
+            <td th:text="${k.idKue}"></td>
+            <td th:text="${k.namaKue}"></td>
+            <td th:text="'Rp' + ${k.harga}"></td>
+            <td>
+                <div class="aksi-tabel">
+                    <a th:href="@{/admin/kue/edit/{id}(id=${k.idKue})}" class="btn-kecil btn-edit">Edit</a>
+                    <form th:action="@{/admin/kue/hapus/{id}(id=${k.idKue})}" method="post">
+                        <button type="submit" class="btn-kecil btn-hapus">Hapus</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

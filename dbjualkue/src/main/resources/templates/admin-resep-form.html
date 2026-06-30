@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tambah Resep</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Tambah Resep</h1>
+
+<form th:action="@{/admin/resep/tambah}" method="post">
+
+    <label>Pilih Kue</label>
+    <select name="idKue" required>
+        <option value="">-- Pilih Kue --</option>
+        <option th:each="k : ${daftarKue}" th:value="${k.idKue}" th:text="${k.namaKue}"></option>
+    </select>
+
+    <div id="daftar-bahan-resep">
+        <div class="baris-bahan">
+            <label>Bahan Baku</label>
+            <select name="idBahan">
+                <option value="">-- Pilih Bahan --</option>
+                <option th:each="b : ${daftarBahan}" th:value="${b.idBahan}" th:text="${b.namaBahan} + ' (' + ${b.satuan} + ')'"></option>
+            </select>
+
+            <label>Jumlah Dibutuhkan</label>
+            <input type="number" name="jumlahDibutuhkan" step="0.01">
+        </div>
+    </div>
+
+    <button type="button" onclick="tambahBaris()" class="btn btn-cek" style="margin-top: 10px;">+ Tambah Bahan Lain</button>
+
+    <button type="submit">Simpan Semua</button>
+
+</form>
+
+<!-- Template tersembunyi, untuk dicopy saat tombol "+ Tambah Bahan Lain" diklik -->
+<div id="template-baris" style="display: none;">
+    <div class="baris-bahan">
+        <label>Bahan Baku</label>
+        <select name="idBahan">
+            <option value="">-- Pilih Bahan --</option>
+            <option th:each="b : ${daftarBahan}" th:value="${b.idBahan}" th:text="${b.namaBahan} + ' (' + ${b.satuan} + ')'"></option>
+        </select>
+
+        <label>Jumlah Dibutuhkan</label>
+        <input type="number" name="jumlahDibutuhkan" step="0.01">
+    </div>
+</div>
+
+<script>
+    function tambahBaris() {
+        const template = document.getElementById('template-baris').innerHTML;
+        const container = document.getElementById('daftar-bahan-resep');
+        container.insertAdjacentHTML('beforeend', template);
+    }
+</script>
+
+</body>
+</html>

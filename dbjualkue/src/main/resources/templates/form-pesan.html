@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesan Kue</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<h1>Pesan Kue</h1>
+
+<!-- Tampilkan pesan error kalau validasi gagal -->
+<div class="error" th:if="${errorMessage}">
+    <span th:text="${errorMessage}"></span>
+</div>
+
+<form th:action="@{/pesan}" th:object="${pesanan}" method="post">
+
+    <label>Nama Pembeli</label>
+    <input type="text" th:field="*{namaPembeli}" required>
+
+    <label>No. HP</label>
+    <input type="text" th:field="*{noHp}" required>
+
+    <label>Pilih Jenis Kue</label>
+    <select th:field="*{kue}" required>
+        <option value="">-- Pilih Kue --</option>
+        <option th:each="k : ${daftarKue}"
+                th:value="${k.idKue}"
+                th:text="${k.namaKue} + ' - Rp' + ${k.harga}">
+        </option>
+    </select>
+
+    <label>Jumlah Boks</label>
+    <input type="number" th:field="*{jumlahBoks}" min="1" required>
+
+    <label>Tanggal Pengiriman</label>
+    <input type="date" th:field="*{tanggalPengiriman}" required>
+
+    <button type="submit">Pesan Sekarang</button>
+
+</form>
+
+</body>
+</html>
