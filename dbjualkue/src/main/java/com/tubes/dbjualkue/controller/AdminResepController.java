@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -33,13 +35,18 @@ public class AdminResepController {
     }
 
     //List semua resep
-    @GetMapping
-    public String daftarResep(HttpSession session, Model model) {
-        if (belumLogin(session)) return "redirect:/admin/login";
+   @GetMapping
+public String daftarResep(HttpSession session, Model model) {
+    if (belumLogin(session)) return "redirect:/admin/login";
 
-        model.addAttribute("daftarResep", resepRepository.findAll());
-        return "admin-resep-list";
-    }
+    List<Resep> semuaResep = resepRepository.findAll();
+
+    Map<Kue, List<Resep>> resepPerKue = semuaResep.stream()
+            .collect(Collectors.groupingBy(Resep::getKue));
+
+    model.addAttribute("resepPerKue", resepPerKue);
+    return "admin-resep-list";
+}
 
     //form tambah resep
     @GetMapping("/tambah")
